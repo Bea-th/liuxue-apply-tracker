@@ -1,0 +1,12 @@
+{
+  "name": "study-apply-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "本地运行的留学申请进度追踪（数据存本地文件，不上线）",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

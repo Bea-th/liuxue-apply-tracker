@@ -1,0 +1,1037 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>留学申请进度追踪 · 国家分级版 v5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ebedf1;
+  --panel:#ffffff;
+  --surface-2:#f6f7f9;
+  --inset:#f1f3f6;
+  --ink:#171a21;
+  --muted:#535a6b;
+  --soft:#8a91a0;
+  --line:#e3e6ec;
+  --line-2:#eef0f4;
+  --navy:#1e2a52;
+  --navy-2:#2f407c;
+  --shadow:0 1px 2px rgba(20,24,40,.05),0 6px 18px rgba(20,24,40,.06);
+  --shadow-lg:0 12px 40px rgba(20,24,40,.16);
+  --r:14px;
+  --rs:10px;
+  --font-display:"Space Grotesk","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --font-body:"Inter","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+  --mono:"Space Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{min-height:100vh;background:var(--bg);color:var(--ink);font:15px/1.5 var(--font-body);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:#1d4ed8;text-decoration:none}
+a:hover{text-decoration:underline}
+.app{max-width:1280px;margin:0 auto;padding:22px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:42px;height:42px;border-radius:8px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:900;box-shadow:var(--shadow)}
+h1,h2,h3,p{margin:0}
+h1{font-family:var(--font-display);font-size:26px;letter-spacing:-.01em}
+.sub{margin-top:3px;color:var(--muted);font-size:13px}
+.actions,.row-actions,.view-switch{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn,.icon-btn,.seg-btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:10px;box-shadow:var(--shadow)}
+.btn{padding:8px 12px}
+.btn.primary{background:var(--navy);border-color:var(--navy);color:#fff}
+.btn.danger{color:#be123c;border-color:#fecdd3;background:#fff1f2}
+.btn:hover,.icon-btn:hover,.seg-btn:hover{border-color:#b6c3d4}
+.icon-btn{width:34px;height:34px;display:grid;place-items:center}
+.seg{display:inline-flex;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:3px;box-shadow:var(--shadow)}
+.seg-btn{box-shadow:none;border:0;background:transparent;padding:6px 12px}
+.seg-btn.active{background:var(--navy);color:#fff;box-shadow:none;font-weight:700}
+.summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.metric{background:linear-gradient(180deg,#fff,#f9fbfe);border:1px solid var(--line);border-radius:12px;padding:13px 14px;box-shadow:var(--shadow)}
+.metric strong{display:block;font:800 25px/1 var(--mono)}
+.metric span{display:block;margin-top:6px;color:var(--muted);font-size:12px}
+.status-shell{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:14px 12px;box-shadow:var(--shadow);margin-bottom:18px}
+.status-cap{display:flex;gap:8px;align-items:center;margin:0 4px 10px;color:var(--soft);font:10.5px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase}
+.status-cap:after{content:"";height:1px;background:var(--line-2);flex:1;order:2}
+.status-cap span:first-child{order:1}
+.status-cap span:last-child{order:3}
+.status-row{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding:2px 2px 6px}
+.status-sep{display:flex;align-items:center;color:var(--soft);padding:0 2px;align-self:center;user-select:none;font-size:15px}
+.status-chip{appearance:none;background:transparent;border:1px solid transparent;cursor:pointer;border-radius:11px;padding:8px 12px;min-width:74px;display:flex;flex-direction:column;align-items:center;gap:3px;transition:transform .12s ease,background .12s ease,border-color .12s;color:var(--muted);position:relative;overflow:visible;text-align:center}
+.status-chip:hover{transform:translateY(-2px);background:var(--surface-2)}
+.status-chip:before{content:"";position:static;width:8px;height:8px;border-radius:50%;background:var(--c);margin-bottom:1px;flex:none}
+.status-chip.all:before{display:none}
+.status-chip strong{display:block;color:var(--ink);font:700 20px/1 var(--mono)}
+.status-chip span{display:block;margin-top:0;color:var(--muted);font-size:12px;white-space:nowrap}
+.status-chip.active{background:var(--b);border-color:color-mix(in srgb,var(--c) 35%, white);box-shadow:none;transform:none}
+.status-chip.active strong,.status-chip.active span{color:var(--c);font-weight:700}
+.toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}
+.search{min-width:260px;flex:1;border:1px solid var(--line);border-radius:10px;background:#fff;padding:9px 12px;outline:none;box-shadow:var(--shadow)}
+.search:focus{border-color:#93b4ff;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+.muted{color:var(--muted)}
+.section-title,.view-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:2px 0 10px}
+.section-title h2,.view-title h2{font-family:var(--font-display);font-size:20px;letter-spacing:-.01em}
+.country-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.country-card{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:15px;box-shadow:var(--shadow);transition:.14s}
+.country-card:hover{transform:translateY(-2px);border-color:#cbd5e1}
+.country-open{appearance:none;text-align:left;background:transparent;border:0;padding:0;width:100%;color:inherit}
+.country-head{display:flex;align-items:flex-start;gap:10px}
+.country-code{font:900 20px/1 var(--mono);letter-spacing:0;color:#07152f;margin-top:3px}
+.country-name{font-family:var(--font-display);font-size:18px;font-weight:700}
+.country-meta{font:12px/1.4 var(--mono);color:var(--muted);margin-top:3px}
+.country-actions{position:absolute;top:12px;right:12px;display:flex;gap:5px}
+.country-actions .icon-btn{width:30px;height:30px;background:rgba(255,255,255,.92)}
+.country-numbers{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.mini{border:1px solid var(--line);background:#f8fbff;border-radius:10px;padding:9px}
+.mini strong{display:block;font:900 19px/1 var(--mono)}
+.mini span{display:block;margin-top:4px;color:var(--muted);font-size:12px}
+.tiny-status{display:flex;gap:5px;flex-wrap:wrap;margin-top:12px;min-height:24px}
+.pill{display:inline-flex;gap:5px;align-items:center;border-radius:999px;padding:3px 8px;background:#eef2f7;color:#526174;font-size:11px;font-weight:700}
+.country-table,.program-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.country-table th,.country-table td,.program-table th,.program-table td{border-bottom:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}
+.country-table th,.program-table th{font-size:11px;color:var(--muted);background:#f8fbff}
+.country-table tr:last-child td,.program-table tr:last-child td{border-bottom:0}
+.crumb{display:flex;align-items:center;gap:9px;min-width:0}
+.back{width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow)}
+.country-view{display:grid;gap:12px}
+.school-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:12px}
+.school-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;transition:border-color .14s,box-shadow .14s,transform .14s}
+.school-card:hover{border-color:#d3d8e2;box-shadow:var(--shadow-lg);transform:translateY(-1px)}
+.school-card.expanded{border-color:#cbd7ea}
+.school-card.empty-school{border-style:dashed}
+.school-head{padding:13px 14px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;justify-content:space-between;gap:10px;background:linear-gradient(180deg,#fff,#f9fbff)}
+.school-card:not(.expanded) .school-head{border-bottom:0}
+.school-name strong{display:block;font-size:16px}
+.school-name span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.school-body{padding:12px}
+.inline-school-panel{display:grid;gap:12px}
+.inline-school-top{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start}
+.inline-status{display:flex;flex-wrap:wrap;gap:7px}
+.inline-status .drawer-status-chip{font-size:12.5px;padding:6px 11px}
+.inline-tools{display:flex;gap:8px;justify-content:flex-end;align-items:center;flex-wrap:wrap}
+.empty-box{border:1px dashed #c4cfdd;background:#f9fbff;border-radius:12px;padding:22px;text-align:center;color:var(--muted)}
+.program-card{border:1px solid var(--line);border-radius:12px;padding:13px 14px;margin-bottom:10px;background:#fff;position:relative}
+.program-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--c);border-radius:12px 0 0 12px}
+.program-title{display:flex;align-items:center;gap:8px;margin-left:4px;margin-bottom:9px}
+.program-title input{font-weight:800}
+.field{width:100%;border:1px solid var(--line);border-radius:9px;background:#fff;padding:8px 11px;outline:none}
+.field:focus{border-color:#93b4ff;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.field-grid .full{grid-column:1/-1}
+.label{display:grid;gap:4px;color:var(--muted);font-size:11px}
+.status-select{appearance:none;color:var(--c);background-color:var(--b);border:1px solid color-mix(in srgb,var(--c) 32%, white);border-radius:999px;padding:6px 30px 6px 12px;font-weight:800;line-height:1.15;box-shadow:inset 0 1px 0 rgba(255,255,255,.85);background-image:linear-gradient(45deg,transparent 50%,var(--c) 50%),linear-gradient(135deg,var(--c) 50%,transparent 50%);background-position:calc(100% - 14px) 52%,calc(100% - 9px) 52%;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+.status-select:focus{outline:2px solid color-mix(in srgb,var(--c) 22%, transparent);outline-offset:1px}
+.link-btn{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:9px;background:var(--inset);color:var(--navy-2)}
+.table-wrap{overflow-x:auto}
+.program-table{min-width:980px}
+.program-name{min-width:240px}
+.program-table .school-row td{background:#f8fbff;font-weight:900}
+.program-table .empty-row td{color:var(--muted)}
+.school-link{appearance:none;border:0;background:transparent;color:inherit;font-weight:700;padding:0;text-align:left}
+.school-link:hover{text-decoration:underline}
+.school-list{display:flex;flex-direction:column;gap:6px}
+.school-list-head{display:flex;align-items:center;gap:8px;margin:4px 2px 10px;padding-bottom:8px;border-bottom:1.5px solid var(--line)}
+.school-list-head .code{font-family:var(--mono);font-size:11px;color:#fff;background:var(--navy);padding:1px 8px;border-radius:20px}
+.school-list-head strong{font-weight:700}
+.school-list-head .count{font-family:var(--mono);font-size:11px;color:#fff;background:var(--navy);padding:1px 8px;border-radius:20px}
+.school-row-card{display:grid;grid-template-columns:minmax(0,1fr) 92px auto 34px;gap:12px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:var(--rs);padding:9px 13px;cursor:pointer;transition:.12s;box-shadow:0 1px 1px rgba(20,24,40,.03)}
+.school-row-card:hover{border-color:#d3d8e2;box-shadow:var(--shadow)}
+.school-row-card:focus-visible{outline:2px solid var(--navy-2);outline-offset:1px}
+.school-row-name{display:flex;flex-direction:column;gap:1px;min-width:0}
+.school-row-name .zh{font-weight:700;font-size:14.5px;line-height:1.2}
+.school-row-name .en{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.school-row-programs{font-size:12px;color:var(--muted)}
+.school-row-status{justify-self:start}
+.school-row-site{justify-self:end}
+.school-row-site .icon-btn{width:30px;height:30px;background:var(--inset);color:var(--navy-2);box-shadow:none}
+.school-status-select{min-width:112px}
+.drawer-overlay{position:fixed;inset:0;background:rgba(18,22,38,.42);opacity:0;pointer-events:none;transition:.2s;z-index:45}
+.drawer-overlay.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;right:0;top:0;height:100vh;width:min(540px,94vw);background:#fff;box-shadow:-16px 0 50px rgba(18,22,38,.22);transform:translateX(100%);transition:transform .26s cubic-bezier(.22,.61,.36,1);z-index:46;overflow:auto;overscroll-behavior:contain}
+.drawer.show{transform:translateX(0)}
+.drawer-head{position:sticky;top:0;background:#fff;z-index:2;border-bottom:1px solid var(--line);padding:18px 20px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.drawer-title strong{display:block;font-family:var(--font-display);font-size:21px}
+.drawer-title span{display:block;color:var(--muted);margin-top:2px}
+.drawer-body{padding:16px 20px 28px}
+.drawer-section{margin-top:18px}
+.drawer-section:first-child{margin-top:0}
+.drawer-section-title{font:11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.drawer .program-card{background:#f9fbff}
+.drawer-status{display:flex;flex-wrap:wrap;gap:7px}
+.drawer-status-chip{appearance:none;cursor:pointer;font:600 13px/1.2 var(--font-body);padding:7px 13px;border-radius:9px;color:var(--muted);background:var(--surface-2);border:1px solid var(--line);transition:.12s}
+.drawer-status-chip:hover{border-color:var(--c)}
+.drawer-status-chip.active{color:var(--c);background:var(--b);border-color:color-mix(in srgb,var(--c) 45%, white);box-shadow:0 0 0 2px color-mix(in srgb,var(--c) 16%, transparent)}
+.modal-mask{position:fixed;inset:0;background:rgba(15,23,42,.42);display:none;align-items:flex-start;justify-content:center;padding:9vh 18px;z-index:50}
+.modal-mask.show{display:flex}
+.modal{width:min(520px,100%);background:#fff;border-radius:8px;box-shadow:var(--shadow-lg);overflow:hidden}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line)}
+.modal-body{padding:4px 18px 18px}
+.modal-foot{display:flex;justify-content:flex-end;gap:8px;padding:14px 18px;border-top:1px solid var(--line);background:#f8fbff}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-grid .full{grid-column:1/-1}
+.hint{font-size:12px;color:var(--muted);margin-top:8px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(14px);background:#10213f;color:#fff;border-radius:8px;padding:10px 14px;opacity:0;pointer-events:none;transition:.18s;box-shadow:var(--shadow);z-index:80}
+.toast.show{opacity:1;transform:translateX(-50%)}
+#importFile{display:none}
+@media (max-width:920px){
+  .app{padding:14px}
+  .top{align-items:flex-start;flex-direction:column}
+  .summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .status-row{display:flex;overflow-x:auto}
+  .status-chip{min-width:92px}
+  .school-grid{grid-template-columns:1fr}
+  .school-row-card{grid-template-columns:minmax(0,1fr) auto 34px}
+  .school-row-status{grid-column:1/-1}
+}
+@media (max-width:620px){
+  .field-grid,.form-grid,.country-numbers{grid-template-columns:1fr}
+  .section-title,.view-title{align-items:flex-start;flex-direction:column}
+  .school-row-card{grid-template-columns:minmax(0,1fr) 34px}
+  .school-row-programs{grid-column:1}
+  .school-row-status{grid-column:1/-1}
+}
+
+
+/* v5：国家页「看板」中的学校改为单列纵向展开。
+   只影响第二层国家页的学校看板；首页国家看板、清单侧边栏、数据逻辑保持 v4。 */
+.country-view .school-grid{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.country-view .school-card{
+  width:100%;
+  overflow:hidden;
+}
+.country-view .school-card:hover{
+  transform:none;
+}
+.country-view .school-head{
+  align-items:center;
+  padding:15px 16px;
+}
+.country-view .school-link.school-name{
+  width:100%;
+  text-align:left;
+  display:block;
+}
+.country-view .school-name strong{
+  font-size:17px;
+  line-height:1.25;
+}
+.country-view .school-name span{
+  font-size:12.5px;
+}
+.country-view .school-body{
+  padding:16px;
+  background:#fff;
+  border-top:1px solid var(--line);
+}
+.country-view .inline-school-panel{
+  gap:14px;
+}
+.country-view .inline-school-top{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:14px;
+  align-items:start;
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  background:#f9fbff;
+}
+.country-view .inline-school-panel > div:not(.inline-school-top){
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  background:#fff;
+}
+.country-view .inline-tools{
+  justify-content:flex-end;
+  align-content:flex-start;
+}
+.country-view .program-card:last-child{
+  margin-bottom:0;
+}
+@media (max-width:760px){
+  .country-view .inline-school-top{
+    grid-template-columns:1fr;
+  }
+  .country-view .inline-tools{
+    justify-content:flex-start;
+  }
+}
+
+
+/* v7b：国家卡片与国家页学校卡片的操作按钮悬停显示，降低默认视觉噪音。 */
+.country-actions{
+  top:14px;
+  right:14px;
+  gap:4px;
+  opacity:0;
+  transform:translateY(-3px);
+  pointer-events:none;
+  transition:opacity .16s ease, transform .16s ease;
+}
+.country-card:hover .country-actions,
+.country-card:focus-within .country-actions{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+.country-actions .icon-btn{
+  width:26px;
+  height:26px;
+  border-radius:8px;
+  background:rgba(248,250,252,.78);
+  border-color:rgba(226,232,240,.85);
+  color:#6b7280;
+  box-shadow:none;
+  font-size:13px;
+  backdrop-filter:blur(6px);
+}
+.country-actions .icon-btn:hover{
+  background:#fff;
+  border-color:#cbd5e1;
+  color:var(--navy);
+  box-shadow:0 3px 10px rgba(20,24,40,.08);
+}
+.country-actions .icon-btn[data-action="delete-country"]:hover{
+  background:#fff7f7;
+  border-color:#fecdd3;
+  color:#be123c;
+}
+.country-view .school-head{
+  position:relative;
+  padding-right:112px;
+  min-height:94px;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+.country-view .school-name strong{
+  margin-bottom:2px;
+}
+.country-view .school-head > .row-actions{
+  position:absolute;
+  top:14px;
+  right:16px;
+  display:flex;
+  flex-wrap:nowrap;
+  gap:5px;
+  opacity:0;
+  transform:translateY(-3px);
+  pointer-events:none;
+  transition:opacity .16s ease, transform .16s ease;
+  z-index:2;
+}
+.country-view .school-card:hover .school-head > .row-actions,
+.country-view .school-card:focus-within .school-head > .row-actions{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+.country-view .school-head > .row-actions .icon-btn{
+  width:26px;
+  height:26px;
+  min-width:26px;
+  border-radius:8px;
+  background:rgba(248,250,252,.78);
+  border-color:rgba(226,232,240,.85);
+  color:#6b7280;
+  box-shadow:none;
+  font-size:12px;
+  line-height:1;
+  backdrop-filter:blur(6px);
+}
+.country-view .school-head > .row-actions .icon-btn:hover{
+  background:#fff;
+  border-color:#cbd5e1;
+  color:var(--navy);
+  box-shadow:0 3px 10px rgba(20,24,40,.08);
+}
+.country-view .school-head > .row-actions .icon-btn[data-action="delete-school"]:hover{
+  background:#fff7f7;
+  border-color:#fecdd3;
+  color:#be123c;
+}
+.program-fold-list{
+  display:grid;
+  gap:10px;
+}
+.program-fold{
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  background:#fff;
+  box-shadow:0 1px 2px rgba(20,24,40,.04),0 5px 14px rgba(20,24,40,.045);
+  overflow:hidden;
+  transition:border-color .14s ease, box-shadow .14s ease;
+}
+.program-fold:hover{
+  border-color:#d3d8e2;
+  box-shadow:var(--shadow);
+}
+.program-fold.expanded{
+  border-color:#cbd7ea;
+}
+.program-fold-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  min-height:82px;
+  padding:18px 16px;
+  background:linear-gradient(180deg,#fff,#f9fbff);
+}
+.program-fold-title{
+  appearance:none;
+  border:0;
+  background:transparent;
+  color:inherit;
+  padding:0;
+  min-width:0;
+  text-align:left;
+  flex:1;
+}
+.program-fold-title strong{
+  display:block;
+  font-size:16px;
+  line-height:1.25;
+  font-weight:900;
+}
+.program-fold-title span{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:12.5px;
+}
+.program-fold-actions{
+  flex:none;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  opacity:.55;
+  transition:opacity .14s ease;
+}
+.program-fold:hover .program-fold-actions,
+.program-fold:focus-within .program-fold-actions{
+  opacity:1;
+}
+.program-fold-actions .icon-btn{
+  width:26px;
+  height:26px;
+  min-width:26px;
+  border-radius:8px;
+  background:rgba(248,250,252,.78);
+  border-color:rgba(226,232,240,.85);
+  color:#6b7280;
+  box-shadow:none;
+  font-size:12px;
+  line-height:1;
+}
+.program-fold-actions .icon-btn:hover{
+  background:#fff;
+  border-color:#cbd5e1;
+  color:var(--navy);
+  box-shadow:0 3px 10px rgba(20,24,40,.08);
+}
+.program-fold-body{
+  border-top:1px solid var(--line);
+  padding:14px;
+  background:#fff;
+}
+.program-fold-body .program-card{
+  margin-bottom:0;
+}
+@media (hover:none){
+  .country-actions,
+  .country-view .school-head > .row-actions{
+    opacity:.42;
+    transform:none;
+    pointer-events:auto;
+  }
+  .country-actions .icon-btn,
+  .country-view .school-head > .row-actions .icon-btn{
+    background:transparent;
+    border-color:transparent;
+    backdrop-filter:none;
+  }
+}
+@media (max-width:620px){
+  .country-view .school-head{
+    min-height:90px;
+    padding-top:18px;
+    padding-right:96px;
+    padding-bottom:18px;
+  }
+  .country-view .school-head > .row-actions{
+    right:12px;
+  }
+  .program-fold-head{
+    min-height:76px;
+    padding:16px 14px;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <div class="mark">SA</div>
+      <div>
+        <h1>留学申请进度追踪</h1>
+        <p class="sub" id="saveState">本地数据</p>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn primary" data-action="add-country">添加国家</button>
+      <button class="btn" data-action="export">导出备份</button>
+      <button class="btn" data-action="import">导入备份</button>
+      <button class="btn" data-action="reset">恢复默认</button>
+    </div>
+  </header>
+
+  <section class="summary" id="summary"></section>
+
+  <section class="status-shell">
+    <div class="status-cap"><span>申请流水线 · Pipeline</span><span>点击筛选</span></div>
+    <div class="status-row" id="statusBar"></div>
+  </section>
+
+  <div class="toolbar">
+    <div class="view-switch">
+      <div class="seg">
+        <button class="seg-btn active" data-view-mode="board">看板</button>
+        <button class="seg-btn" data-view-mode="list">清单</button>
+      </div>
+      <span class="muted" id="scopeText"></span>
+    </div>
+    <input class="search" id="search" type="search" autocomplete="off" placeholder="搜索国家、学校或专业">
+  </div>
+
+  <main id="view"></main>
+</div>
+
+<input id="importFile" type="file" accept=".json,application/json">
+<div class="drawer-overlay" id="drawerOverlay" data-action="close-drawer"></div>
+<aside class="drawer" id="drawer"></aside>
+<div class="modal-mask" id="modalMask"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(()=>{
+"use strict";
+
+const API = "/api/data";
+const STATUS=[
+  ["undetermined","未确定","#667085","#f5f7fa"],
+  ["preparing","准备中","#b7791f","#fff8e6"],
+  ["waiting_open","待开放","#7861c9","#f6f2ff"],
+  ["open","已开放","#2f8fb6","#eef9fd"],
+  ["submitted","已提交","#5f66c8","#f1f3ff"],
+  ["waiting","等结果","#26847b","#eefaf7"],
+  ["admitted","已录","#c75b5b","#fff3f3"],
+  ["rejected","已拒","#475467","#f4f5f7"],
+  ["withdrawn","放弃","#98a2b3","#f8fafc"]
+];
+const DEFAULT=[
+  ["欧洲","英国","GB","#2563eb",[["帝国理工学院","Imperial College London","imperial.ac.uk"],["牛津大学","University of Oxford","ox.ac.uk"],["剑桥大学","University of Cambridge","cam.ac.uk"],["伦敦大学学院","University College London (UCL)","ucl.ac.uk"],["爱丁堡大学","University of Edinburgh","ed.ac.uk"],["伦敦国王学院","King's College London (KCL)","kcl.ac.uk"],["曼彻斯特大学","University of Manchester","manchester.ac.uk"],["布里斯托大学","University of Bristol","bristol.ac.uk"],["华威大学","University of Warwick","warwick.ac.uk"],["伯明翰大学","University of Birmingham","birmingham.ac.uk"],["利兹大学","University of Leeds","leeds.ac.uk"],["格拉斯哥大学","University of Glasgow","gla.ac.uk"],["谢菲尔德大学","University of Sheffield","sheffield.ac.uk"]]],
+  ["欧洲","爱尔兰","IE","#16a34a",[["都柏林圣三一学院","Trinity College Dublin (TCD)","tcd.ie"],["都柏林大学","University College Dublin (UCD)","ucd.ie"]]],
+  ["欧洲","荷兰","NL","#ea580c",[["代尔夫特理工大学","Delft University of Technology (TU Delft)","tudelft.nl"],["阿姆斯特丹大学","University of Amsterdam (UvA)","uva.nl"],["埃因霍温理工大学","Eindhoven University of Technology (TU/e)","tue.nl"]]],
+  ["欧洲","德国","DE","#111827",[["慕尼黑工业大学","Technical University of Munich (TUM)","tum.de"],["慕尼黑大学","LMU Munich (Ludwig-Maximilians-Universität)","lmu.de"],["亚琛工业大学","RWTH Aachen University","rwth-aachen.de"],["图宾根大学","University of Tübingen","uni-tuebingen.de"]]],
+  ["北美","加拿大","CA","#dc2626",[["麦吉尔大学","McGill University","mcgill.ca"],["多伦多大学","University of Toronto","utoronto.ca"],["英属哥伦比亚大学","University of British Columbia (UBC)","ubc.ca"],["阿尔伯塔大学","University of Alberta","ualberta.ca"]]],
+  ["北美","美国","US","#b91c1c",[["普林斯顿大学","Princeton University","princeton.edu"],["麻省理工学院","Massachusetts Institute of Technology (MIT)","mit.edu"],["哈佛大学","Harvard University","harvard.edu"],["斯坦福大学","Stanford University","stanford.edu"],["耶鲁大学","Yale University","yale.edu"],["杜克大学","Duke University","duke.edu"],["宾夕法尼亚大学","University of Pennsylvania","upenn.edu"],["加州理工学院","California Institute of Technology (Caltech)","caltech.edu"],["布朗大学","Brown University","brown.edu"],["约翰斯·霍普金斯大学","Johns Hopkins University","jhu.edu"],["西北大学","Northwestern University","northwestern.edu"],["哥伦比亚大学","Columbia University","columbia.edu"],["康奈尔大学","Cornell University","cornell.edu"],["芝加哥大学","University of Chicago","uchicago.edu"],["范德堡大学","Vanderbilt University","vanderbilt.edu"]]],
+  ["南半球","澳大利亚","AU","#0891b2",[["新南威尔士大学","UNSW Sydney","unsw.edu.au"],["墨尔本大学","University of Melbourne","unimelb.edu.au"],["悉尼大学","University of Sydney","sydney.edu.au"]]],
+  ["南半球","新西兰","NZ","#65a30d",[["奥克兰大学","University of Auckland","auckland.ac.nz"]]],
+  ["亚洲","香港","HK","#db2777",[["香港大学","University of Hong Kong (HKU)","hku.hk"],["香港中文大学","Chinese University of Hong Kong (CUHK)","cuhk.edu.hk"],["香港科技大学","HK University of Science & Technology (HKUST)","hkust.edu.hk"],["香港理工大学","Hong Kong Polytechnic University (PolyU)","polyu.edu.hk"],["香港城市大学","City University of Hong Kong (CityU)","cityu.edu.hk"]]],
+  ["亚洲","新加坡","SG","#7c3aed",[["新加坡国立大学","National University of Singapore (NUS)","nus.edu.sg"],["南洋理工大学","Nanyang Technological University (NTU)","ntu.edu.sg"]]]
+];
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const slug=s=>String(s||"item").toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g,"").replace(/&/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,54)||"item";
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const href=s=>!s?"":/^https?:\/\//i.test(s)?s:"https://"+s;
+const st=id=>STATUS.find(x=>x[0]===id)||STATUS[0];
+let state={countries:[],screen:"home",countryId:"",viewMode:"board",status:"",query:"",modal:null,drawer:null,expandedSchoolId:"",expandedProgramIds:{}};
+
+function seed(){
+  return DEFAULT.map(c=>({id:c[2].toLowerCase(),region:c[0],name:c[1],code:c[2],accent:c[3],schools:c[4].map(s=>({id:c[2].toLowerCase()+"-"+slug(s[1]),nameZh:s[0],nameEn:s[1],website:s[2],status:"undetermined",note:"",programs:[]}))}));
+}
+function normalizeData(){
+  state.countries.forEach(c=>{
+    if(!Array.isArray(c.schools))c.schools=[];
+    c.schools.forEach(s=>{
+      if(!STATUS.some(x=>x[0]===s.status))s.status="undetermined";
+      if(typeof s.note!=="string")s.note="";
+      if(!Array.isArray(s.programs))s.programs=[];
+      s.programs.forEach(p=>{
+        if(!STATUS.some(x=>x[0]===p.status))p.status="undetermined";
+        ["name","link","openDate","deadline","duration","appFee","tuition","note"].forEach(k=>{if(typeof p[k]!=="string")p[k]=""});
+      });
+    });
+  });
+}
+// ===== 本地文件持久化 =====
+async function load(){
+  let saved = null;
+  try{
+    const res = await fetch(API, { cache: "no-store" });
+    if(res.ok) saved = await res.json();
+  }catch(e){ /* 服务未就绪时静默，走默认数据 */ }
+  state.countries = saved && Array.isArray(saved.countries) ? saved.countries : seed();
+  normalizeData();
+  state.screen   = saved?.screen   || "home";
+  state.countryId= saved?.countryId|| "";
+  state.viewMode = saved?.viewMode || "board";
+  state.expandedProgramIds = {};
+  if(!saved){ save(); }
+  $("#saveState").textContent = "已保存 · 本地文件";
+}
+
+let _saveTimer = null, _savePending = false;
+function save(){
+  _savePending = true;
+  $("#saveState").textContent = "保存中…";
+  clearTimeout(_saveTimer);
+  _saveTimer = setTimeout(flushSave, 350);
+}
+async function flushSave(){
+  clearTimeout(_saveTimer);
+  if(!_savePending) return;
+  _savePending = false;
+  const payload = {
+    version:2, savedAt:new Date().toISOString(),
+    countries:state.countries, screen:state.screen,
+    countryId:state.countryId, viewMode:state.viewMode
+  };
+  try{
+    await fetch(API, { method:"PUT", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload) });
+    $("#saveState").textContent = "已保存 · 本地文件";
+  }catch(e){
+    $("#saveState").textContent = "保存失败 · 请确认服务在运行";
+  }
+}
+window.addEventListener("beforeunload", ()=>{
+  if(!_savePending) return;
+  try{
+    const payload = JSON.stringify({version:2, countries:state.countries, screen:state.screen, countryId:state.countryId, viewMode:state.viewMode});
+    navigator.sendBeacon?.(API, new Blob([payload], {type:"application/json"}));
+  }catch(e){}
+});
+// ===== 持久化逻辑结束 =====
+function allSchools(list=state.countries){return list.flatMap(c=>c.schools.map(s=>({...s,country:c})))}
+function allPrograms(list=state.countries){return allSchools(list).flatMap(s=>s.programs.map(p=>({...p,school:s,country:s.country})))}
+function applicationItems(list=state.countries){
+  return allSchools(list).flatMap(s=>s.programs.length?s.programs.map(p=>({...p,school:s,country:s.country,type:"program"})):[{status:s.status||"undetermined",school:s,country:s.country,type:"school"}]);
+}
+function schoolStatusItems(s){return s.programs.length?s.programs:[{status:s.status||"undetermined"}]}
+function findCountry(id){return state.countries.find(c=>c.id===id)}
+function findSchool(cid,sid){return findCountry(cid)?.schools.find(s=>s.id===sid)}
+function findProgram(cid,sid,pid){return findSchool(cid,sid)?.programs.find(p=>p.id===pid)}
+function counts(list=applicationItems()){
+  const out={};STATUS.forEach(s=>out[s[0]]=0);list.forEach(p=>out[p.status]=(out[p.status]||0)+1);return out;
+}
+function matchesQueryCountry(c,q){
+  if(!q)return true;
+  const hay=[c.name,c.code,c.region,...c.schools.flatMap(s=>[s.nameZh,s.nameEn,s.website,...s.programs.map(p=>p.name)])].join(" ").toLowerCase();
+  return hay.includes(q);
+}
+function matchesQuerySchool(s,q){
+  if(!q)return true;
+  const hay=[s.nameZh,s.nameEn,s.website,...s.programs.map(p=>[p.name,p.deadline,p.duration,p.note].join(" "))].join(" ").toLowerCase();
+  return hay.includes(q);
+}
+function visibleCountries(){
+  const q=state.query.trim().toLowerCase();
+  return state.countries.filter(c=>{
+    const items=applicationItems([c]);
+    return matchesQueryCountry(c,q)&&(!state.status||items.some(p=>p.status===state.status));
+  });
+}
+function visibleSchools(c){
+  const q=state.query.trim().toLowerCase();
+  return c.schools.filter(s=>{
+    const items=schoolStatusItems(s);
+    return matchesQuerySchool(s,q)&&(!state.status||items.some(p=>p.status===state.status));
+  });
+}
+function visiblePrograms(s){
+  const q=state.query.trim().toLowerCase();
+  return s.programs.filter(p=>{
+    const hay=[p.name,p.link,p.deadline,p.duration,p.tuition,p.appFee,p.note].join(" ").toLowerCase();
+    return (!state.status||p.status===state.status)&&(!q||hay.includes(q)||s.nameZh.toLowerCase().includes(q)||s.nameEn.toLowerCase().includes(q));
+  });
+}
+
+function renderSummary(){
+  const ps=allPrograms(), cs=counts(applicationItems());
+  const active=(cs.submitted||0)+(cs.waiting||0)+(cs.admitted||0)+(cs.rejected||0);
+  $("#summary").innerHTML=[
+    ["国家/地区",state.countries.length],
+    ["学校",allSchools().length],
+    ["专业",ps.length],
+    ["提交后",active]
+  ].map(x=>`<div class="metric"><strong>${x[1]}</strong><span>${x[0]}</span></div>`).join("");
+}
+function renderStatusBar(){
+  const items=applicationItems(), cs=counts(items), total=items.length;
+  let html=`<button class="status-chip all ${state.status?"":"active"}" data-status="" style="--c:#1e2a52;--b:#eef2f7"><strong>${total}</strong><span>全部</span></button>`;
+  STATUS.forEach(s=>html+=`<span class="status-sep">›</span><button class="status-chip ${state.status===s[0]?"active":""}" data-status="${s[0]}" style="--c:${s[2]};--b:${s[3]}"><strong>${cs[s[0]]||0}</strong><span>${s[1]}</span></button>`);
+  $("#statusBar").innerHTML=html;
+}
+function statusDots(){
+  return STATUS.map(s=>`<i style="--c:${s[2]}" title="${s[1]}"></i>`).join("");
+}
+function tinyStatus(list){
+  const cs=counts(list);
+  const hits=STATUS.filter(s=>cs[s[0]]);
+  if(!hits.length)return `<span class="pill" style="--c:#64748b;--b:#f1f5f9">未添加专业</span>`;
+  return hits.map(s=>`<span class="pill">${s[1]} ${cs[s[0]]}</span>`).join("");
+}
+function homeBoard(){
+  const list=visibleCountries();
+  if(!list.length)return `<div class="empty-box">没有匹配结果。</div>`;
+  return `<div class="section-title"><h2>国家 / 地区</h2><span class="muted">${list.length} 个入口</span></div><div class="country-grid">${list.map(c=>{
+    const ps=allPrograms([c]);
+    const items=applicationItems([c]);
+    return `<article class="country-card">
+      <button class="country-open" data-action="open-country" data-country="${c.id}">
+        <div class="country-head"><span class="country-code">${esc(c.code)}</span><div><div class="country-name">${esc(c.name)}</div><div class="country-meta">${esc(c.region)} · ${esc(c.code)}</div></div></div>
+        <div class="country-numbers"><div class="mini"><strong>${c.schools.length}</strong><span>学校</span></div><div class="mini"><strong>${ps.length}</strong><span>专业</span></div></div>
+        <div class="tiny-status">${tinyStatus(items)}</div>
+      </button>
+      <div class="country-actions"><button class="icon-btn" title="编辑国家" data-action="edit-country" data-country="${c.id}">✎</button><button class="icon-btn" title="删除国家" data-action="delete-country" data-country="${c.id}">×</button></div>
+    </article>`;
+  }).join("")}</div>`;
+}
+function homeList(){
+  const list=visibleCountries();
+  if(!list.length)return `<div class="empty-box">没有匹配结果。</div>`;
+  return `<div class="section-title"><h2>国家 / 地区清单</h2><span class="muted">${list.length} 个入口</span></div><div class="table-wrap"><table class="country-table"><thead><tr><th>国家/地区</th><th>地区</th><th>学校</th><th>专业</th><th>状态概览</th><th>操作</th></tr></thead><tbody>${list.map(c=>`<tr><td><strong>${esc(c.code)} ${esc(c.name)}</strong></td><td>${esc(c.region)}</td><td>${c.schools.length}</td><td>${allPrograms([c]).length}</td><td>${tinyStatus(applicationItems([c]))}</td><td><div class="row-actions"><button class="btn" data-action="open-country" data-country="${c.id}">进入</button><button class="btn" data-action="edit-country" data-country="${c.id}">编辑</button><button class="btn danger" data-action="delete-country" data-country="${c.id}">删除</button></div></td></tr>`).join("")}</tbody></table></div>`;
+}
+function countryView(){
+  const c=findCountry(state.countryId)||state.countries[0];
+  if(!c)return `<div class="empty-box">还没有国家。点击右上角“添加国家”。</div>`;
+  const schools=visibleSchools(c);
+  return `<section class="country-view">
+    <div class="view-title">
+      <div class="crumb"><button class="back" data-action="home">←</button><h2><span style="color:${esc(c.accent)}">${esc(c.code)}</span> ${esc(c.name)} <span class="muted">${c.schools.length} 所学校 · ${allPrograms([c]).length} 个专业</span></h2></div>
+      <div class="actions"><button class="btn primary" data-action="add-school" data-country="${c.id}">添加学校</button><button class="btn" data-action="edit-country" data-country="${c.id}">编辑国家</button><button class="btn danger" data-action="delete-country" data-country="${c.id}">删除国家</button></div>
+    </div>
+    ${state.viewMode==="list"?countryList(c,schools):countryBoard(c,schools)}
+  </section>`;
+}
+function countryBoard(c,schools){
+  if(!schools.length)return `<div class="empty-box">没有匹配学校或专业。</div>`;
+  return `<div class="school-grid">${schools.map(s=>schoolCard(c,s)).join("")}</div>`;
+}
+function schoolCard(c,s){
+  const ps=visiblePrograms(s);
+  const open=state.expandedSchoolId===s.id;
+  return `<article class="school-card ${s.programs.length?"":"empty-school"} ${open?"expanded":""}">
+    <div class="school-head"><button class="school-link school-name" data-action="toggle-school-inline" data-country="${c.id}" data-school="${s.id}"><strong>${esc(s.nameZh)}</strong><span>${esc(s.nameEn)}</span></button><div class="row-actions"><button class="icon-btn" title="${open?"收起":"展开"}" data-action="toggle-school-inline" data-country="${c.id}" data-school="${s.id}">${open?"▴":"▾"}</button><button class="icon-btn" title="编辑学校" data-action="edit-school" data-country="${c.id}" data-school="${s.id}">✎</button><button class="icon-btn" title="删除学校" data-action="delete-school" data-country="${c.id}" data-school="${s.id}">×</button></div></div>
+    ${open?`<div class="school-body">${schoolInlinePanel(c,s,ps)}</div>`:""}
+  </article>`;
+}
+function schoolInlinePanel(c,s,ps){
+  const site=href(s.website);
+  return `<div class="inline-school-panel">
+    <div class="inline-school-top">
+      <div>
+        <div class="drawer-section-title"><span>申请状态</span></div>
+        <div class="inline-status">${drawerStatusChips(c,s)}</div>
+      </div>
+      <div class="inline-tools">${site?`<a class="btn" href="${esc(site)}" target="_blank" rel="noopener">官网 ↗</a>`:""}<button class="btn primary" data-action="add-program" data-country="${c.id}" data-school="${s.id}">添加专业</button></div>
+    </div>
+    <div>
+      <div class="drawer-section-title"><span>学校信息</span></div>
+      <div class="field-grid">
+        <label class="label">中文名<input class="field" data-school-field="nameZh" data-country="${c.id}" data-school="${s.id}" value="${esc(s.nameZh)}"></label>
+        <label class="label">英文名<input class="field" data-school-field="nameEn" data-country="${c.id}" data-school="${s.id}" value="${esc(s.nameEn)}"></label>
+        <label class="label full">官网<input class="field" data-school-field="website" data-country="${c.id}" data-school="${s.id}" value="${esc(s.website)}"></label>
+        <label class="label full">院校备注<textarea class="field" rows="2" data-school-field="note" data-country="${c.id}" data-school="${s.id}" placeholder="整体备注、文书思路、与申请相关的提醒...">${esc(s.note)}</textarea></label>
+      </div>
+    </div>
+    <div>
+      <div class="drawer-section-title"><span>申请专业 / 项目</span></div>
+      ${ps.length?`<div class="program-fold-list">${ps.map(p=>programFoldCard(c,s,p)).join("")}</div>`:`<div class="empty-box">暂无专业。点击“添加专业”开始记录。</div>`}
+    </div>
+  </div>`;
+}
+function statusSelect(p){
+  const s=st(p.status);
+  return `<select class="field status-select" data-field="status" style="--c:${s[2]};--b:${s[3]}">${STATUS.map(o=>`<option value="${o[0]}" ${p.status===o[0]?"selected":""}>${o[1]}</option>`).join("")}</select>`;
+}
+function programFoldCard(c,s,p){
+  const sx=st(p.status);
+  const open=!!(state.expandedProgramIds&&state.expandedProgramIds[p.id]);
+  const meta=[st(p.status)[1],p.deadline?"截止/轮次："+p.deadline:"",p.duration?"学制："+p.duration:""].filter(Boolean).join(" · ");
+  return `<article class="program-fold ${open?"expanded":""}" data-country="${c.id}" data-school="${s.id}" data-program="${p.id}" style="--c:${sx[2]};--b:${sx[3]}">
+    <div class="program-fold-head">
+      <button class="program-fold-title" data-action="toggle-program-inline" data-country="${c.id}" data-school="${s.id}" data-program="${p.id}"><strong>${esc(p.name||"未命名专业")}</strong><span>${esc(meta||"点击展开专业信息")}</span></button>
+      <div class="program-fold-actions"><button class="icon-btn" title="${open?"收起":"展开"}" data-action="toggle-program-inline" data-country="${c.id}" data-school="${s.id}" data-program="${p.id}">${open?"▴":"▾"}</button></div>
+    </div>
+    ${open?`<div class="program-fold-body">${programCard(c,s,p)}</div>`:""}
+  </article>`;
+}
+function programCard(c,s,p){
+  const sx=st(p.status);
+  return `<div class="program-card" data-country="${c.id}" data-school="${s.id}" data-program="${p.id}" style="--c:${sx[2]};--b:${sx[3]}">
+    <div class="program-title"><input class="field" data-field="name" value="${esc(p.name)}"><button class="icon-btn danger" title="删除专业" data-action="delete-program">×</button></div>
+    <div class="field-grid">
+      <label class="label">状态${statusSelect(p)}</label>
+      <label class="label">开放日期<input class="field" type="date" data-field="openDate" value="${esc(p.openDate)}"></label>
+      <label class="label">截止/轮次<input class="field" data-field="deadline" value="${esc(p.deadline)}"></label>
+      <label class="label">学制<input class="field" data-field="duration" value="${esc(p.duration)}"></label>
+      <label class="label">费用<input class="field" data-field="tuition" value="${esc(p.tuition)}"></label>
+      <label class="label">项目链接<span class="row-actions"><input class="field" data-field="link" value="${esc(p.link)}">${p.link?`<a class="link-btn" href="${esc(href(p.link))}" target="_blank" rel="noopener">↗</a>`:""}</span></label>
+      <label class="label full">备注<textarea class="field" rows="2" data-field="note">${esc(p.note)}</textarea></label>
+    </div>
+  </div>`;
+}
+function schoolStatusSelect(c,s){
+  const sx=st(s.status||"undetermined");
+  return `<select class="status-select school-status-select" data-school-status="1" data-country="${c.id}" data-school="${s.id}" style="--c:${sx[2]};--b:${sx[3]}">${STATUS.map(o=>`<option value="${o[0]}" ${sx[0]===o[0]?"selected":""}>${o[1]}</option>`).join("")}</select>`;
+}
+function schoolStatusSummary(c,s){
+  if(!s.programs.length)return schoolStatusSelect(c,s);
+  return tinyStatus(s.programs);
+}
+function schoolListRow(c,s){
+  const site=href(s.website);
+  return `<div class="school-row-card" data-country="${c.id}" data-school="${s.id}" tabindex="0" role="button" aria-label="${esc(s.nameZh)}">
+    <div class="school-row-name"><span class="zh">${esc(s.nameZh)}</span><span class="en">${esc(s.nameEn)}</span></div>
+    <div class="school-row-programs">${s.programs.length?s.programs.length+" 专业":"—"}</div>
+    <div class="school-row-status">${schoolStatusSummary(c,s)}</div>
+    <div class="school-row-site">${site?`<a class="icon-btn" href="${esc(site)}" target="_blank" rel="noopener" aria-label="打开官网">↗</a>`:`<button class="icon-btn" data-action="open-school-drawer" data-country="${c.id}" data-school="${s.id}" title="详情">›</button>`}</div>
+  </div>`;
+}
+function countryList(c,schools){
+  if(!schools.length)return `<div class="empty-box">没有匹配学校或专业。</div>`;
+  return `<div class="school-list-head"><span class="code">${esc(c.code)}</span><strong>${esc(c.name)}</strong><span class="count">${schools.length}</span></div><div class="school-list">${schools.map(s=>schoolListRow(c,s)).join("")}</div>`;
+}
+function programRow(c,s,p){
+  const sx=st(p.status);
+  return `<tr data-country="${c.id}" data-school="${s.id}" data-program="${p.id}" style="--c:${sx[2]};--b:${sx[3]}">
+    <td>${esc(s.nameZh)}</td>
+    <td><input class="field program-name" data-field="name" value="${esc(p.name)}"></td>
+    <td>${statusSelect(p)}</td>
+    <td><input class="field" type="date" data-field="openDate" value="${esc(p.openDate)}"></td>
+    <td><input class="field" data-field="deadline" value="${esc(p.deadline)}"></td>
+    <td><input class="field" data-field="duration" value="${esc(p.duration)}"></td>
+    <td><input class="field" data-field="tuition" value="${esc(p.tuition)}"></td>
+    <td><span class="row-actions"><input class="field" data-field="link" value="${esc(p.link)}">${p.link?`<a class="link-btn" href="${esc(href(p.link))}" target="_blank" rel="noopener">↗</a>`:""}</span></td>
+    <td><button class="icon-btn danger" data-action="delete-program">×</button></td>
+  </tr>`;
+}
+function render(){
+  renderSummary();renderStatusBar();
+  $("#view").innerHTML=state.screen==="country"?countryView():(state.viewMode==="list"?homeList():homeBoard());
+  $("#search").value=state.query;
+  $("#scopeText").textContent=state.screen==="country"?(findCountry(state.countryId)?.name||""):"全局";
+  document.querySelectorAll("[data-view-mode]").forEach(b=>b.classList.toggle("active",b.dataset.viewMode===state.viewMode));
+  renderModal();
+  renderDrawer();
+}
+
+function openDrawer(countryId,schoolId){state.drawer={countryId,schoolId};renderDrawer()}
+function closeDrawer(){state.drawer=null;renderDrawer()}
+function drawerStatusChips(c,s){
+  const cur=s.status||"undetermined";
+  return STATUS.map(o=>`<button class="drawer-status-chip ${cur===o[0]?"active":""}" data-action="set-school-status" data-country="${c.id}" data-school="${s.id}" data-next-status="${o[0]}" style="--c:${o[2]};--b:${o[3]}">${o[1]}</button>`).join("");
+}
+function renderDrawer(){
+  const drawer=$("#drawer"), overlay=$("#drawerOverlay");
+  const c=state.drawer?findCountry(state.drawer.countryId):null;
+  const s=c&&state.drawer?findSchool(c.id,state.drawer.schoolId):null;
+  if(!c||!s){drawer.classList.remove("show");overlay.classList.remove("show");drawer.innerHTML="";return}
+  const ps=s.programs;
+  drawer.innerHTML=`<div class="drawer-head">
+    <div class="drawer-title"><strong>${esc(s.nameZh)}</strong><span>${esc(s.nameEn)}</span><span>${esc(c.region)} · ${esc(c.name)} · ${esc(c.code)}</span></div>
+    <button class="icon-btn" data-action="close-drawer">×</button>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-section">
+      <div class="drawer-section-title"><span>申请状态</span></div>
+      <div class="drawer-status">${drawerStatusChips(c,s)}</div>
+    </div>
+    <div class="drawer-section">
+      <div class="drawer-section-title"><span>学校信息</span><button class="btn danger" data-action="delete-school" data-country="${c.id}" data-school="${s.id}">删除学校</button></div>
+      <div class="field-grid">
+        <label class="label">中文名<input class="field" data-school-field="nameZh" data-country="${c.id}" data-school="${s.id}" value="${esc(s.nameZh)}"></label>
+        <label class="label">英文名<input class="field" data-school-field="nameEn" data-country="${c.id}" data-school="${s.id}" value="${esc(s.nameEn)}"></label>
+        <label class="label full">官网<span class="row-actions"><input class="field" data-school-field="website" data-country="${c.id}" data-school="${s.id}" value="${esc(s.website)}">${s.website?`<a class="link-btn" href="${esc(href(s.website))}" target="_blank" rel="noopener">↗</a>`:""}</span></label>
+        <label class="label full">院校备注<textarea class="field" rows="2" data-school-field="note" data-country="${c.id}" data-school="${s.id}" placeholder="整体备注、文书思路、与申请相关的提醒...">${esc(s.note)}</textarea></label>
+      </div>
+    </div>
+    <div class="drawer-section">
+      <div class="drawer-section-title"><span>申请专业 / 项目</span><button class="btn primary" data-action="add-program" data-country="${c.id}" data-school="${s.id}">添加专业</button></div>
+      ${ps.length?ps.map(p=>programCard(c,s,p)).join(""):`<div class="empty-box">暂无专业。点击“添加专业”开始记录。</div>`}
+    </div>
+  </div>`;
+  overlay.classList.add("show");drawer.classList.add("show");
+}
+
+function openModal(type,data={}){state.modal={type,data};renderModal()}
+function closeModal(){state.modal=null;renderModal()}
+function renderModal(){
+  const mask=$("#modalMask");
+  if(!state.modal){mask.classList.remove("show");mask.innerHTML="";return}
+  const {type,data}=state.modal;
+  let title="",body="",saveAction="";
+  if(type==="country"){
+    const c=data.country||{};
+    title=data.country?"编辑国家/地区":"添加国家/地区"; saveAction="save-country";
+    body=`<div class="form-grid">
+      <label class="label full">国家/地区名称<input id="m-name" class="field" value="${esc(c.name||"")}"></label>
+      <label class="label">代码<input id="m-code" class="field" value="${esc(c.code||"")}" placeholder="US"></label>
+      <label class="label">地区<input id="m-region" class="field" value="${esc(c.region||"")}" placeholder="北美"></label>
+      <label class="label full">主题色<input id="m-accent" class="field" type="color" value="${esc(c.accent||"#2563eb")}"></label>
+    </div><p class="hint">国家可以自由增删。删除国家会同时删除其中的学校和专业。</p>`;
+  }
+  if(type==="school"){
+    const s=data.school||{};
+    title=data.school?"编辑学校":"添加学校"; saveAction="save-school";
+    body=`<div class="form-grid">
+      <label class="label full">中文名<input id="m-zh" class="field" value="${esc(s.nameZh||"")}"></label>
+      <label class="label full">英文名<input id="m-en" class="field" value="${esc(s.nameEn||"")}"></label>
+      <label class="label full">官网<input id="m-web" class="field" value="${esc(s.website||"")}" placeholder="example.edu"></label>
+    </div>`;
+  }
+  if(type==="program"){
+    title="添加专业"; saveAction="save-program";
+    body=`<div class="form-grid">
+      <label class="label full">专业名称<input id="m-program" class="field" value=""></label>
+      <label class="label full">项目链接<input id="m-link" class="field" value="" placeholder="https://..."></label>
+    </div>`;
+  }
+  mask.innerHTML=`<div class="modal"><div class="modal-head"><h3>${title}</h3><button class="icon-btn" data-action="close-modal">×</button></div><div class="modal-body">${body}</div><div class="modal-foot"><button class="btn" data-action="close-modal">取消</button><button class="btn primary" data-action="${saveAction}">保存</button></div></div>`;
+  mask.classList.add("show");
+}
+function saveCountryModal(){
+  const name=$("#m-name").value.trim(), code=$("#m-code").value.trim().toUpperCase(), region=$("#m-region").value.trim(), accent=$("#m-accent").value||"#2563eb";
+  if(!name||!code||!region){alert("请填写名称、代码和地区。");return}
+  const editing=state.modal.data.country;
+  if(editing){editing.name=name;editing.code=code;editing.region=region;editing.accent=accent}
+  else state.countries.push({id:slug(code)+"-"+uid().slice(-4),name,code,region,accent,schools:[]});
+  closeModal();save();render();toast(editing?"已更新国家":"已添加国家");
+}
+function saveSchoolModal(){
+  const c=findCountry(state.modal.data.countryId), editing=state.modal.data.school;
+  if(!c)return;
+  const nameZh=$("#m-zh").value.trim(), nameEn=$("#m-en").value.trim(), website=$("#m-web").value.trim();
+  if(!nameZh&&!nameEn){alert("请至少填写一个学校名称。");return}
+  if(editing){editing.nameZh=nameZh||nameEn;editing.nameEn=nameEn||nameZh;editing.website=website}
+  else c.schools.push({id:c.id+"-"+slug(nameEn||nameZh)+"-"+uid().slice(-4),nameZh:nameZh||nameEn,nameEn:nameEn||nameZh,website,status:"undetermined",note:"",programs:[]});
+  closeModal();save();render();toast(editing?"已更新学校":"已添加学校");
+}
+function saveProgramModal(){
+  const s=findSchool(state.modal.data.countryId,state.modal.data.schoolId);
+  if(!s)return;
+  const name=$("#m-program").value.trim()||"新专业";
+  const p={id:"p-"+uid(),name,status:"undetermined",link:$("#m-link").value.trim(),openDate:"",deadline:"",duration:"",appFee:"",tuition:"",note:""};
+  s.programs.push(p);
+  state.expandedProgramIds=state.expandedProgramIds||{};
+  state.expandedProgramIds[p.id]=true;
+  closeModal();save();render();toast("已添加专业");
+}
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove("show"),1800)}
+function exportData(){
+  const blob=new Blob([JSON.stringify({version:2,exportedAt:new Date().toISOString(),countries:state.countries},null,2)],{type:"application/json"});
+  const a=document.createElement("a"),d=new Date(),pad=n=>String(n).padStart(2,"0");
+  a.href=URL.createObjectURL(blob);a.download=`留学申请进度_国家分级_${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}.json`;a.click();URL.revokeObjectURL(a.href);
+}
+function importData(file){
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const data=JSON.parse(r.result);
+      if(!Array.isArray(data.countries))throw new Error("没有 countries 数据");
+      state.countries=data.countries;normalizeData();state.screen="home";state.countryId="";state.status="";state.query="";state.expandedProgramIds={};save();render();toast("已导入备份");
+    }catch(e){alert("导入失败："+e.message)}
+  };
+  r.readAsText(file);
+}
+
+document.addEventListener("click",e=>{
+  const act=e.target.closest("[data-action]");
+  const statusBtn=e.target.closest("[data-status]");
+  const modeBtn=e.target.closest("[data-view-mode]");
+  if(statusBtn){state.status=statusBtn.dataset.status;render();return}
+  if(modeBtn){state.viewMode=modeBtn.dataset.viewMode;if(state.viewMode==="list")state.expandedSchoolId="";save();render();return}
+  const schoolRow=e.target.closest(".school-row-card");
+  if(!act&&schoolRow&&!e.target.closest("a,button,input,select,textarea,label")){openDrawer(schoolRow.dataset.country,schoolRow.dataset.school);return}
+  if(!act)return;
+  const a=act.dataset.action,cid=act.dataset.country,sid=act.dataset.school;
+  if(a==="open-country"){state.screen="country";state.countryId=cid;state.query="";state.expandedSchoolId="";state.expandedProgramIds={};save();render()}
+  if(a==="home"){state.screen="home";state.countryId="";state.query="";state.expandedSchoolId="";state.expandedProgramIds={};save();render()}
+  if(a==="toggle-school-inline"){state.expandedSchoolId=state.expandedSchoolId===sid?"":sid;closeDrawer();render()}
+  if(a==="toggle-program-inline"){
+    const pid=act.dataset.program;
+    state.expandedProgramIds=state.expandedProgramIds||{};
+    if(state.expandedProgramIds[pid]) delete state.expandedProgramIds[pid];
+    else state.expandedProgramIds[pid]=true;
+    render();
+  }
+  if(a==="open-school-drawer"){openDrawer(cid,sid)}
+  if(a==="close-drawer"){closeDrawer()}
+  if(a==="set-school-status"){const s=findSchool(cid,sid),next=act.dataset.nextStatus;if(s&&STATUS.some(x=>x[0]===next)){s.status=next;save();render();toast("已更新状态")}}
+  if(a==="add-country")openModal("country");
+  if(a==="edit-country")openModal("country",{country:findCountry(cid)});
+  if(a==="delete-country"){const c=findCountry(cid);if(c&&confirm(`删除「${c.name}」以及其中所有学校/专业？`)){state.countries=state.countries.filter(x=>x.id!==cid);if(state.countryId===cid){state.screen="home";state.countryId="";state.expandedSchoolId=""}if(state.drawer?.countryId===cid)state.drawer=null;save();render();toast("已删除国家")}}
+  if(a==="add-school")openModal("school",{countryId:cid});
+  if(a==="edit-school")openModal("school",{countryId:cid,school:findSchool(cid,sid)});
+  if(a==="delete-school"){const c=findCountry(cid),s=findSchool(cid,sid);if(c&&s&&confirm(`删除「${s.nameZh}」及其专业？`)){c.schools=c.schools.filter(x=>x.id!==sid);if(state.drawer?.schoolId===sid)state.drawer=null;if(state.expandedSchoolId===sid)state.expandedSchoolId="";save();render();toast("已删除学校")}}
+  if(a==="add-program")openModal("program",{countryId:cid,schoolId:sid});
+  if(a==="delete-program"){const host=act.closest("[data-program]"),s=findSchool(host.dataset.country,host.dataset.school);if(s&&confirm("删除这个专业？")){s.programs=s.programs.filter(p=>p.id!==host.dataset.program);if(state.expandedProgramIds)delete state.expandedProgramIds[host.dataset.program];save();render();toast("已删除专业")}}
+  if(a==="close-modal")closeModal();
+  if(a==="save-country")saveCountryModal();
+  if(a==="save-school")saveSchoolModal();
+  if(a==="save-program")saveProgramModal();
+  if(a==="export")exportData();
+  if(a==="import")$("#importFile").click();
+  if(a==="reset"&&confirm("恢复默认国家和学校？当前自定义数据会被清空。")){state.countries=seed();state.screen="home";state.countryId="";state.status="";state.query="";state.expandedProgramIds={};save();render();toast("已恢复默认")}
+});
+function handleField(e){
+  if(e.target.id==="search"){state.query=e.target.value;render();return}
+  if(e.target.dataset.schoolStatus){
+    const s=findSchool(e.target.dataset.country,e.target.dataset.school);
+    if(!s)return;
+    s.status=e.target.value;save();render();return;
+  }
+  if(e.target.dataset.schoolField){
+    const s=findSchool(e.target.dataset.country,e.target.dataset.school);
+    if(!s)return;
+    s[e.target.dataset.schoolField]=e.target.value;save();return;
+  }
+  const field=e.target.dataset.field,host=e.target.closest("[data-program]");
+  if(!field||!host)return;
+  const p=findProgram(host.dataset.country,host.dataset.school,host.dataset.program);
+  if(!p)return;
+  p[field]=e.target.value;save();
+  if(field==="status")render();
+}
+document.addEventListener("input",handleField);
+document.addEventListener("change",handleField);
+document.addEventListener("keydown",e=>{
+  const row=e.target.closest?.(".school-row-card");
+  if(row&&(e.key==="Enter"||e.key===" ")&&!e.target.closest("a,button,input,select,textarea,label")){
+    e.preventDefault();
+    openDrawer(row.dataset.country,row.dataset.school);
+  }
+});
+$("#importFile").addEventListener("change",e=>{const f=e.target.files[0];if(f)importData(f);e.target.value=""});
+
+load().then(render);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,567 @@
+{
+  "version": 2,
+  "savedAt": "2026-06-26T16:09:14.139Z",
+  "countries": [
+    {
+      "id": "gb",
+      "region": "欧洲",
+      "name": "英国",
+      "code": "GB",
+      "accent": "#2563eb",
+      "schools": [
+        {
+          "id": "gb-imperial-college-london",
+          "nameZh": "帝国理工学院",
+          "nameEn": "Imperial College London",
+          "website": "imperial.ac.uk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "gb-university-of-oxford",
+          "nameZh": "牛津大学",
+          "nameEn": "University of Oxford",
+          "website": "ox.ac.uk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "gb-university-of-cambridge",
+          "nameZh": "剑桥大学",
+          "nameEn": "University of Cambridge",
+          "website": "cam.ac.uk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "gb-university-college-london-ucl",
+          "nameZh": "伦敦大学学院",
+          "nameEn": "University College London (UCL)",
+          "website": "ucl.ac.uk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "gb-university-of-edinburgh",
+          "nameZh": "爱丁堡大学",
+          "nameEn": "University of Edinburgh",
+          "website": "ed.ac.uk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "gb-king-s-college-london-kcl",
+          "nameZh": "伦敦国王学院",
+          "nameEn": "King's College London (KCL)",
+          "website": "kcl.ac.uk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "gb-university-of-manchester",
+          "nameZh": "曼彻斯特大学",
+          "nameEn": "University of Manchester",
+          "website": "manchester.ac.uk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "gb-university-of-bristol",
+          "nameZh": "布里斯托大学",
+          "nameEn": "University of Bristol",
+          "website": "bristol.ac.uk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "gb-university-of-warwick",
+          "nameZh": "华威大学",
+          "nameEn": "University of Warwick",
+          "website": "warwick.ac.uk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "gb-university-of-birmingham",
+          "nameZh": "伯明翰大学",
+          "nameEn": "University of Birmingham",
+          "website": "birmingham.ac.uk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "gb-university-of-leeds",
+          "nameZh": "利兹大学",
+          "nameEn": "University of Leeds",
+          "website": "leeds.ac.uk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "gb-university-of-glasgow",
+          "nameZh": "格拉斯哥大学",
+          "nameEn": "University of Glasgow",
+          "website": "gla.ac.uk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "gb-university-of-sheffield",
+          "nameZh": "谢菲尔德大学",
+          "nameEn": "University of Sheffield",
+          "website": "sheffield.ac.uk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        }
+      ]
+    },
+    {
+      "id": "ie",
+      "region": "欧洲",
+      "name": "爱尔兰",
+      "code": "IE",
+      "accent": "#16a34a",
+      "schools": [
+        {
+          "id": "ie-trinity-college-dublin-tcd",
+          "nameZh": "都柏林圣三一学院",
+          "nameEn": "Trinity College Dublin (TCD)",
+          "website": "tcd.ie",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "ie-university-college-dublin-ucd",
+          "nameZh": "都柏林大学",
+          "nameEn": "University College Dublin (UCD)",
+          "website": "ucd.ie",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        }
+      ]
+    },
+    {
+      "id": "nl",
+      "region": "欧洲",
+      "name": "荷兰",
+      "code": "NL",
+      "accent": "#ea580c",
+      "schools": [
+        {
+          "id": "nl-delft-university-of-technology-tu-delft",
+          "nameZh": "代尔夫特理工大学",
+          "nameEn": "Delft University of Technology (TU Delft)",
+          "website": "tudelft.nl",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "nl-university-of-amsterdam-uva",
+          "nameZh": "阿姆斯特丹大学",
+          "nameEn": "University of Amsterdam (UvA)",
+          "website": "uva.nl",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "nl-eindhoven-university-of-technology-tu-e",
+          "nameZh": "埃因霍温理工大学",
+          "nameEn": "Eindhoven University of Technology (TU/e)",
+          "website": "tue.nl",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        }
+      ]
+    },
+    {
+      "id": "de",
+      "region": "欧洲",
+      "name": "德国",
+      "code": "DE",
+      "accent": "#111827",
+      "schools": [
+        {
+          "id": "de-technical-university-of-munich-tum",
+          "nameZh": "慕尼黑工业大学",
+          "nameEn": "Technical University of Munich (TUM)",
+          "website": "tum.de",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "de-lmu-munich-ludwig-maximilians-universitat",
+          "nameZh": "慕尼黑大学",
+          "nameEn": "LMU Munich (Ludwig-Maximilians-Universität)",
+          "website": "lmu.de",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "de-rwth-aachen-university",
+          "nameZh": "亚琛工业大学",
+          "nameEn": "RWTH Aachen University",
+          "website": "rwth-aachen.de",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "de-university-of-tubingen",
+          "nameZh": "图宾根大学",
+          "nameEn": "University of Tübingen",
+          "website": "uni-tuebingen.de",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        }
+      ]
+    },
+    {
+      "id": "ca",
+      "region": "北美",
+      "name": "加拿大",
+      "code": "CA",
+      "accent": "#dc2626",
+      "schools": [
+        {
+          "id": "ca-mcgill-university",
+          "nameZh": "麦吉尔大学",
+          "nameEn": "McGill University",
+          "website": "mcgill.ca",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "ca-university-of-toronto",
+          "nameZh": "多伦多大学",
+          "nameEn": "University of Toronto",
+          "website": "utoronto.ca",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "ca-university-of-british-columbia-ubc",
+          "nameZh": "英属哥伦比亚大学",
+          "nameEn": "University of British Columbia (UBC)",
+          "website": "ubc.ca",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "ca-university-of-alberta",
+          "nameZh": "阿尔伯塔大学",
+          "nameEn": "University of Alberta",
+          "website": "ualberta.ca",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        }
+      ]
+    },
+    {
+      "id": "us",
+      "region": "北美",
+      "name": "美国",
+      "code": "US",
+      "accent": "#b91c1c",
+      "schools": [
+        {
+          "id": "us-princeton-university",
+          "nameZh": "普林斯顿大学",
+          "nameEn": "Princeton University",
+          "website": "princeton.edu",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "us-massachusetts-institute-of-technology-mit",
+          "nameZh": "麻省理工学院",
+          "nameEn": "Massachusetts Institute of Technology (MIT)",
+          "website": "mit.edu",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "us-harvard-university",
+          "nameZh": "哈佛大学",
+          "nameEn": "Harvard University",
+          "website": "harvard.edu",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "us-stanford-university",
+          "nameZh": "斯坦福大学",
+          "nameEn": "Stanford University",
+          "website": "stanford.edu",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "us-yale-university",
+          "nameZh": "耶鲁大学",
+          "nameEn": "Yale University",
+          "website": "yale.edu",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "us-duke-university",
+          "nameZh": "杜克大学",
+          "nameEn": "Duke University",
+          "website": "duke.edu",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "us-university-of-pennsylvania",
+          "nameZh": "宾夕法尼亚大学",
+          "nameEn": "University of Pennsylvania",
+          "website": "upenn.edu",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "us-california-institute-of-technology-caltech",
+          "nameZh": "加州理工学院",
+          "nameEn": "California Institute of Technology (Caltech)",
+          "website": "caltech.edu",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "us-brown-university",
+          "nameZh": "布朗大学",
+          "nameEn": "Brown University",
+          "website": "brown.edu",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "us-johns-hopkins-university",
+          "nameZh": "约翰斯·霍普金斯大学",
+          "nameEn": "Johns Hopkins University",
+          "website": "jhu.edu",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "us-northwestern-university",
+          "nameZh": "西北大学",
+          "nameEn": "Northwestern University",
+          "website": "northwestern.edu",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "us-columbia-university",
+          "nameZh": "哥伦比亚大学",
+          "nameEn": "Columbia University",
+          "website": "columbia.edu",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "us-cornell-university",
+          "nameZh": "康奈尔大学",
+          "nameEn": "Cornell University",
+          "website": "cornell.edu",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "us-university-of-chicago",
+          "nameZh": "芝加哥大学",
+          "nameEn": "University of Chicago",
+          "website": "uchicago.edu",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "us-vanderbilt-university",
+          "nameZh": "范德堡大学",
+          "nameEn": "Vanderbilt University",
+          "website": "vanderbilt.edu",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        }
+      ]
+    },
+    {
+      "id": "au",
+      "region": "南半球",
+      "name": "澳大利亚",
+      "code": "AU",
+      "accent": "#0891b2",
+      "schools": [
+        {
+          "id": "au-unsw-sydney",
+          "nameZh": "新南威尔士大学",
+          "nameEn": "UNSW Sydney",
+          "website": "unsw.edu.au",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "au-university-of-melbourne",
+          "nameZh": "墨尔本大学",
+          "nameEn": "University of Melbourne",
+          "website": "unimelb.edu.au",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "au-university-of-sydney",
+          "nameZh": "悉尼大学",
+          "nameEn": "University of Sydney",
+          "website": "sydney.edu.au",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        }
+      ]
+    },
+    {
+      "id": "nz",
+      "region": "南半球",
+      "name": "新西兰",
+      "code": "NZ",
+      "accent": "#65a30d",
+      "schools": [
+        {
+          "id": "nz-university-of-auckland",
+          "nameZh": "奥克兰大学",
+          "nameEn": "University of Auckland",
+          "website": "auckland.ac.nz",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        }
+      ]
+    },
+    {
+      "id": "hk",
+      "region": "亚洲",
+      "name": "香港",
+      "code": "HK",
+      "accent": "#db2777",
+      "schools": [
+        {
+          "id": "hk-university-of-hong-kong-hku",
+          "nameZh": "香港大学",
+          "nameEn": "University of Hong Kong (HKU)",
+          "website": "hku.hk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "hk-chinese-university-of-hong-kong-cuhk",
+          "nameZh": "香港中文大学",
+          "nameEn": "Chinese University of Hong Kong (CUHK)",
+          "website": "cuhk.edu.hk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "hk-hk-university-of-science-and-technology-hkust",
+          "nameZh": "香港科技大学",
+          "nameEn": "HK University of Science & Technology (HKUST)",
+          "website": "hkust.edu.hk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "hk-hong-kong-polytechnic-university-polyu",
+          "nameZh": "香港理工大学",
+          "nameEn": "Hong Kong Polytechnic University (PolyU)",
+          "website": "polyu.edu.hk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "hk-city-university-of-hong-kong-cityu",
+          "nameZh": "香港城市大学",
+          "nameEn": "City University of Hong Kong (CityU)",
+          "website": "cityu.edu.hk",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        }
+      ]
+    },
+    {
+      "id": "sg",
+      "region": "亚洲",
+      "name": "新加坡",
+      "code": "SG",
+      "accent": "#7c3aed",
+      "schools": [
+        {
+          "id": "sg-national-university-of-singapore-nus",
+          "nameZh": "新加坡国立大学",
+          "nameEn": "National University of Singapore (NUS)",
+          "website": "nus.edu.sg",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        },
+        {
+          "id": "sg-nanyang-technological-university-ntu",
+          "nameZh": "南洋理工大学",
+          "nameEn": "Nanyang Technological University (NTU)",
+          "website": "ntu.edu.sg",
+          "status": "undetermined",
+          "note": "",
+          "programs": []
+        }
+      ]
+    }
+  ],
+  "screen": "home",
+  "countryId": "",
+  "viewMode": "board"
+}
